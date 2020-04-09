@@ -1,4 +1,4 @@
-const textarea = '<div class="textarea"><textarea name="name" rows="6" cols="64" readonly></textarea></div>';
+const textarea = '<div class="textarea"><textarea name="name" rows="6" cols="64"></textarea></div>';
 const keyboard = '<div class="keyboard"><div id="keyboard__keys"></div></div>';
 const language = '<p class="language">Eng</p>';
 let english = localStorage.getItem('english');
