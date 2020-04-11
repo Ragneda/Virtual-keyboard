@@ -38,6 +38,7 @@ textarea {
     user-select: none;
     transition: bottom 0.4s;
     border-radius: 5px;
+ 
 }
 
 .keyboard__hidden {
@@ -45,8 +46,7 @@ textarea {
 }
 
 .keyboard__keys {
-    text-align: center;
- 
+    text-align: center; 
 }
 
 
@@ -54,7 +54,7 @@ textarea {
 .keyboard__key {
     position: relative;
    height: 50px;
-   width: 50px;
+ min-width: 50px;
    margin: 3px;
    border-radius: 5px;
    border: 1px solid rgb(211, 210, 210);
@@ -73,31 +73,45 @@ textarea {
 }
 
 .keyboard__key:hover {
+    
     background-color: rgb(214, 220, 231);
     color:  rgb(47, 53, 58);
-    border: 2px solid  rgb(47, 53, 58);
+    border: 1px solid  rgb(47, 53, 58);
+    transition: 0.2s;
+    box-sizing:border-box;
 }
 
 .keyboard__key:active {
-    transition: 0.2s;
+    transition: 0.3s;
+    border-radius: 50%; 
+}
+
+.active {
+    background-color: rgb(214, 220, 231);
+    color:  rgb(47, 53, 58);
+    border: 1px solid  rgb(47, 53, 58); 
+    transition: 0.3s;
     border-radius: 50%;
 }
 
 .keyboard__key--middle {
-    width: 69px;
+    width: 68px;
+}
+
+.keyboard__key--small {
+    width: 58px;
 }
 
 .keyboard__key--middle2 {
-    width: 106px;
+    width: 114px;
 }
 
 .keyboard__key--big {
-    width: 125px;
+    width: 124px;
 }
 
 .keyboard__key--very-big {
-    width: 36%;
-    max-width: 500px;
+   width: 354px;
 }
 
 .keyboard__key--active::after {
@@ -116,6 +130,4 @@ background-color: rgba(0, 0, 0, 0.4);
     background-color: rgb(253, 43, 43);
     }
 
-.keyboard__key--dark {
-background: rgba(0, 0, 0, 0.25)
-}
+
