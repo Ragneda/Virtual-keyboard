@@ -1,67 +1,87 @@
 const textarea = '<div class="textarea"><textarea name="name" rows="6" cols="64"></textarea></div>';
 const keyboard = '<div class="keyboard"><div id="keyboard__keys"></div></div>';
 const language = '<p class="language">Eng</p>';
-let english = localStorage.getItem('english');
 const body = document.querySelector('body');
+
 
 
 body.insertAdjacentHTML('afterbegin', keyboard);
 body.insertAdjacentHTML('afterbegin', language);
-body.insertAdjacentHTML('afterbegin', textarea);
+body.insertAdjacentHTML('afterbegin', textarea); 
+
+const keymap = ["`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "Backspace",
+"Tab","q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "&frasl;", "Del",
+"CapsLock","a", "s", "d", "f", "g", "h", "j", "k", "l", ";", "'", "Enter",
+    "ShiftLeft", "z", "x", "c", "v", "b", "n", "m", ",", ".", "/","ArrowUp", "ShiftRight",
+    "ControlLeft", "MetaRight", "AltLeft", "Space", "ContextMenu", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight"];
 
 
-const keymap = [96, 49, 50, 51, 52, 53, 54, 55, 56, 57, 48, 45, 61, "Backspace",
-    "Tab", 113, 119, 101, 114, 116, 121, 117, 105, 111, 112, 91, 93, 92, "Del",
-    "Caps", 97, 115, 100, 102, 103, 104, 106, 107, 108, 59, 39, "Enter",
-    "Shift", 122, 120, 99, 118, 98, 110, 109, 44, 46, 47, "arrow^", "Shift2",
-    "Ctrl", "Win", "Alt", 32, "Alt", "arrow<", "arrow", "arrow>", "Ctrl"]
+
+const keymap2 = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7", "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace",
+"Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT", "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "Delete",
+"CapsLock","KeyA", "KeyS", "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter",
+    "ShiftLeft", "KeyZ", "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ArrowUp", "ShiftRight",
+    "ControlLeft", "MetaRight", "AltLeft", "Space", "ContextMenu", "ArrowLeft", "ArrowDown", "ArrowRight", "ControlRight", "Escape"];
+  
 
 function keysjoin() {
-    let keys = '';
+    let keys = [];
 
-    for (let i = 0; i < keymap.length; i++) {
-        if (keymap[i] !== "Backspace" && keymap[i] !== "Tab" && keymap[i] !== "Del" && keymap[i] !== "Caps"
-            && keymap[i] !== "Enter" && keymap[i] !== "Shift" && keymap[i] !== "arrow^" && keymap[i] !== "Ctrl"
-            && keymap[i] !== "Win" && keymap[i] !== "Alt" && keymap[i] !== "arrow<" && keymap[i] !== "arrow"
-            && keymap[i] !== "arrow>" && keymap[i] !== 32 && keymap[i] !== "Shift2")
-            {keys += '<button class="keyboard__key">' + String.fromCharCode(keymap[i]) + '</button>';}
-        if (keymap[i] === "Backspace")
-            {keys += '<button class="keyboard__key keyboard__key--big"><i class="material-icons">keyboard_backspace</i></button>';}
-        if (keymap[i] === "Tab")
-            {keys += '<button class="keyboard__key keyboard__key--middle"><i class="material-icons">keyboard_tab</i></button>';}
-        if (keymap[i] === "Del")
-            {keys += '<button class="keyboard__key">Del</button>';}
-        if (keymap[i] === "Caps")
-            {keys += '<button class="keyboard__key keyboard__key--middle2 keyboard__key--active"><i class="material-icons">keyboard_capslock</i></button>';}
-        if (keymap[i] === "Enter")
-            {keys += '<button class="keyboard__key keyboard__key--big">Enter</button>';}
-        if (keymap[i] === "Shift")
-            {keys += '<button class="keyboard__key keyboard__key--middle2">Shift</button>';}
-        if (keymap[i] === "Shift2")
-           {keys += '<button class="keyboard__key keyboard__key--big">Shift</button>';}
-        if (keymap[i] === "arrow^")
-            {keys += '<button class="keyboard__key"><i class="material-icons" style=" transform: rotate(90deg)">arrow_left</i></button>';}
-        if (keymap[i] === "Ctrl")
-            {keys += '<button class="keyboard__key keyboard__key--middle">Ctrl</button>';}
-        if (keymap[i] === "Win")
-            {keys += '<button class="keyboard__key keyboard__key--middle">Win</button>';}
-        if (keymap[i] === "Alt")
-            {keys += '<button class="keyboard__key keyboard__key--middle">Alt</button>';}
-        if (keymap[i] === "arrow<")
-            {keys += '<button class="keyboard__key"><i class="material-icons">arrow_left</i></button>';}
-        if (keymap[i] === "arrow>")
-            {keys += '<button class="keyboard__key "><i class="material-icons">arrow_right</i></button>';}
-        if (keymap[i] === "arrow")
-            {keys += '<button class="keyboard__key "><i class="material-icons" style=" transform: rotate(90deg)">arrow_right</i></button>';}
-        if (keymap[i] === 32)
-            {keys += '<button class="keyboard__key keyboard__key--very-big"><i class="material-icons">space_bar</i></button>';}
-    }
-
-    document.querySelector('#keyboard__keys').innerHTML = keys;
-
+    
+    for (let i = 0; i < keymap.length; i++) {       
+        if(keymap[i] !=="")
+        {keys += '<button class="keyboard__key" data="'+ keymap2[i]+'">' + keymap[i] + '</button>';}    
+        if (keymap[i] == "Backspace")
+        { keymap[i] = '<i  class="material-icons keyboard__key--big">keyboard_backspace</i>';}
+        if (keymap[i] == "Tab")
+            { keymap[i] = '<i class="material-icons keyboard__key--middle">keyboard_tab</i>';}   
+        if (keymap[i] == "CapsLock")
+            {keymap[i] = '<i id = "capsLock" class="material-icons keyboard__key--middle2 keyboard__key--dark keyboard__key--active">keyboard_capslock</i>';}
+        if (keymap[i] == "Enter")
+            {keymap[i] = '<i class="keyboard__key--middle2">Enter</i>';}
+        if (keymap[i] === "ShiftLeft")
+            {keymap[i]= '<i class=" keyboard__key--middle2">Shift</i>';}
+        if (keymap[i] === "ShiftRight")
+           {keymap[i] = '<i class="keyboard__key--middle2">Shift</i>';}
+        if (keymap[i] === "ArrowUp")
+            {keymap[i]= '<i class="material-icons" style=" transform: rotate(90deg)">arrow_left</i>';}
+        if (keymap[i] === "ControlLeft")
+            {keymap[i] = '<i class="keyboard__key--small">Ctrl</i>';}
+            if (keymap[i] === "ControlRight")
+            {keymap[i] = '<i class="keyboard__key--small">Ctrl</i>';}
+        if (keymap[i] === "MetaRight")
+            {keymap[i]= '<i class="keyboard__key--small">Win</i>';}
+        if (keymap[i] === "AltLeft")
+        {keymap[i]= '<i class="keyboard__key--small">Alt</i>';}
+        if (keymap[i] === "ContextMenu")
+            {keymap[i]='<i class="material-icons keyboard__key--small">assignment</i>';}
+        if (keymap[i] === "ArrowLeft")
+            {keymap[i]= '<i class="material-icons">arrow_left</i>';}
+        if (keymap[i] === "ArrowRight")
+            {keymap[i]= '<i class="material-icons">arrow_right</i>';}
+        if (keymap[i] === "ArrowDown")
+            {keymap[i]= '<i class="material-icons" style=" transform: rotate(90deg)">arrow_right</i>';}
+        if (keymap[i] === "Space")
+            {keymap[i]= '<i class="material-icons keyboard__key--very-big">space_bar</i>';}
+      
+            document.querySelector('#keyboard__keys').innerHTML = keys;
+           
+            document.addEventListener('keydown', function(event) {
+                if (event.code  !== keymap2[i])
+                  {return 0}
+                  document.querySelector('#keyboard__keys .keyboard__key[data = "' + event.code + '"]').classList.add("active");        
+            });
+        
+            document.addEventListener('keyup', function(event) {
+             
+                  document.querySelectorAll ('#keyboard__keys .keyboard__key').forEach(function(element) {
+                      element.classList.remove('active');
+                    });             
+            });
+        }
 }
 
-
+ keysjoin();
 
 window.addEventListener("DOMContentLoaded", function () {
     keysjoin();
